@@ -1,41 +1,41 @@
-<link rel="stylesheet" href="/css/styles.css">
-<section id="register">
-    <div class="container-fluid">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <!-- Seus estilos CSS e outras tags HEAD aqui -->
+</head>
+<body>
+    <div class="container">
+        <h1>Registro</h1>
 
-    
-        <div class="row justify-content-center">
-            <div class="col-lg-4">
-            <div class="box" >
-            <div class="box-header">
-                    <h2 >PROJETO VIAGEM</h2>
-                </div>
-            <p class="texto-alinhado">Cadastre-se agora para ter seu diário de bordo 
-                <br>no seu bolso a qualquer momento </p>
-                    <form action="" method="post" class=".formLogin"> 
-                        <input type="text" class="form-control" placeholder="E-mail de usuário ou telefone" name="telefone">
-                        <br>
-                        <br>
-                        <input type="text" class="form-control" placeholder="Nome Completo" name="Nome">
-                        <br>
-                        <br>                       
-                        <input type="text" class="form-control" placeholder="Nome de Usuário" name="usuario">
-                        <br>
-                        <br>
-                        <input type="password" class="form-control" placeholder="Senha" name="pass">
-                        <br>
-                        <br>
-                        <input type="submit" class="btn btn-insta">
-                        
-                    </form>   
-                </div>
-
-                <br>
-                <div class="box box-content texto-alinhado">
-                    Já tem uma conta ? <a href="/accounts/register">Conecte-se</a>
-                </div>
-
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
             </div>
+        @endif
 
-        </div>
-
+        <form action="{{ route('register') }}" method="post">
+            {{ csrf_field() }}
+            <label for="email">E-mail de usuário:</label>
+            <input type="text" id="email" name="email" value="{{ old('email') }}" required>
+            
+            <label for="nome">Nome Completo:</label>
+            <input type="text" id="nome" name="nome" value="{{ old('nome') }}" required>
+            
+            <label for="username">Nome de Usuário:</label>
+            <input type="text" id="username" name="username" value="{{ old('username') }}" required>
+            
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <label for="password_confirmation">Confirme a senha:</label>
+            <input type="password" id="password_confirmation" name="password_confirmation" required>
+            
+            <button type="submit">Registrar</button>
+        </form>
+        
+        <a href="{{ route('insta.login') }}">Já tem uma conta? Conecte-se</a>
     </div>
+</body>
+</html>

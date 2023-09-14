@@ -1,20 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MVPController;
-use Insta\mvputils; 
+
+Route::get('/iniciar', [MVPController::class, 'login'])->name('insta.login');
+Route::get('/register', [MVPController::class, 'showRegisterForm'])->name('insta.register');
+Route::post('/register', [MVPController::class, 'register'])->name('register');
 
 
-
-    Route::get('/iniciar', [MVPController::class, 'login']);
-    Route::get('/account/{tipo}', [MVPController::class, 'account']);
-
-
-
-
-
-
-
-
-Auth::routes();
 
