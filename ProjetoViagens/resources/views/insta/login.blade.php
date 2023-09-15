@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="/css/styles.css">
+@section('content')
 <div class="container-fluid">
     <div class="row row-login">
         <div class="col-lg-6 img-container">
@@ -11,8 +12,14 @@
                     <h2>PROJETO VIAGEM</h2>
                 </div>
                 <div class="box-content">
-                    <form action="/iniciar" method="post" class="formLogin"> <!-- Alterado o action para "/iniciar" -->
-                        {{ csrf_field() }}
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                    @endif
+
+                    <form action="{{ route('login') }}" method="post" class="formLogin">
+                        @csrf <!-- Adicione essa diretiva para proteção contra CSRF -->
                         <input type="text" class="form-control" placeholder="E-mail de usuário" name="email">
                         <br>
                         <input type="password" class="form-control" placeholder="Senha" name="password">
@@ -30,3 +37,6 @@
         </div>
     </div>
 </div>
+@endsection
+
+

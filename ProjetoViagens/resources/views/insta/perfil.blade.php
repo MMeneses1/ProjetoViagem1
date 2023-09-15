@@ -1,32 +1,22 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/styles.css">
-<div class="container-fluid"> 
-    <div class="row row-profile"> 
-
-        <div class="col-lg-6 img-container">
+<<div class="container">
+    <h1>Perfil do Usuário</h1>
+    @if (session('login_success'))
+        <div class="alert alert-success">
+            Login bem-sucedido!
         </div>
+    @endif
 
-        <div class="col-lg-6 info-container"> 
-            <div class="box">
-                <div class="box-header">
-                    <h2>Meu Perfil</h2>
-                </div>
-                <div class="box-content" >
-                    <h3>Informações do Usuário</h3>
-                    <p><strong>Nome:</strong> {{ Auth::user()->name }}</p>
-                    <p><strong>Email:</strong> {{ Auth::user()->email }}</p>
-                    <p><strong>Nome de Usuário:</strong> {{ Auth::user()->username }}</p>
-                </div>
-            </div>
-            <br>
-            <div class="box box-content texto-alinhado">
-                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                    @csrf
-                </form>
-            </div>
+    @if (session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
         </div>
-    </div>
+    @endif
+
+    <p>Nome: {{ $usuario->nome }}</p>
+    <p>E-mail: {{ $usuario->email }}</p>
+    <p>Username: {{ $usuario->username }}</p>
 </div>
 @endsection
