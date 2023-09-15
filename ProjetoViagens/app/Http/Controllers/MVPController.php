@@ -9,36 +9,15 @@ use Illuminate\Support\Facades\Hash;
 
 class MVPController extends Controller
 {
-    
     public function showLoginForm()
     {
         return view('insta.login');
     }
 
-    public function login(Request $request)
+    public function showRegisterForm()
     {
-        $credentials = $request->only('email', 'password');
-
-        if (Auth::attempt($credentials)) {
-            // Autenticação bem-sucedida, redirecionar para a página de perfil
-            return redirect()->route('perfil')->with('login_success', true);
-        } else {
-            // Autenticação falhou, redirecionar de volta para a página de login com uma mensagem de erro
-            return redirect()->route('login')->with('error', 'Credenciais inválidas. Tente novamente.');
-        }
+        return view('insta.register');
     }
-
-    public function perfil()
-    {
-        if (Auth::check()) {
-            $usuario = Auth::user();
-            return view('insta.perfil', compact('usuario'));
-        } else {
-            return redirect()->route('login')->with('error', 'Você precisa estar logado para acessar o perfil.');
-        }
-    }
-
-
 
     public function register(Request $request)
     {
@@ -62,7 +41,4 @@ class MVPController extends Controller
             return back()->withInput()->with('error', 'Erro durante o registro. Tente novamente.');
         }
     }
-
-
-
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <!-- Seus estilos CSS e outras tags HEAD aqui -->
+    
 </head>
 <body>
     <div class="container">
